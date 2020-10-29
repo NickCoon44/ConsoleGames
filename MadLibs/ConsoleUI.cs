@@ -26,17 +26,19 @@ namespace MadLibs
                     "4. The Hole\n" +
                     "5. The Recipe\n" +
                     "6. Nevermind");
-                string userInput = Console.ReadLine();
-                OpenMenuItem(userInput);
+
+                OpenMenuItem();
             }
         }
 
-        private void OpenMenuItem(string input)
+        private void OpenMenuItem()
         {
             Story story = new Story();
             while (true)
             {
-                switch (input)
+                Console.ForegroundColor = ConsoleColor.White;
+                string userInput = Console.ReadLine();
+                switch (userInput)
                 {
                     case "1":
                         story.TheForest();
@@ -58,6 +60,7 @@ namespace MadLibs
                         _isRunning = false;
                         return;
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Please pick a valid number.");
                         break;
                 }

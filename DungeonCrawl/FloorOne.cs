@@ -34,9 +34,9 @@ namespace DungeonCrawl
                 Console.WriteLine(
                     "-Use WASD to move around.\n" +
                     "-Use arrow keys to step by one tile only.\n" +
-                    "-Press \"M\" at any time to view your stats.\n" +
-                    "-Press \"Q\" at any time to quit.\n\n\n");
-                Console.ForegroundColor = ConsoleColor.White;
+                    "-Press \"C\" at any time to view your stats.\n" +
+                    "-Press \"Q\" at any time to Quit.\n\n\n");
+                Console.ResetColor();
                 player.Move(room);
                 foreach (Enemy enemy in enemyList)
                 {
@@ -62,19 +62,22 @@ namespace DungeonCrawl
 
         private List<Enemy> InitializeEnemies()
         {
-            // 10 enemies: 1 boss, 2 hard, 3 medium, 4 easy
-            Enemy ratOne = new Enemy("Pack of Rats", 1, 5, 1, 3, 2, 50, 1, 2, 3);
-            Enemy ratTwo = new Enemy("Rack of Pats", 1, 5, 1, 3, 2, 50, 1, 4, 8);
-            Enemy banana = new Enemy("Banana Monster", 1, 7, 1, 5, 2, 75, 1, 4, 4);
-            Enemy slime = new Enemy("Living Glue", 1, 7, 1, 5, 1, 75, 1, 2, 9);
-            Enemy skeleton = new Enemy("Spooky Scary Skeleton", 2, 12, 0.9, 8, 1, 125, 2, 7, 8);
-            Enemy ghost = new Enemy("Invisible Ghost", 2, 13, 0.8, 7, 1, 125, 4, 6, 2);
-            Enemy bat = new Enemy("Bat-shaped Bird", 2, 12, 0.9, 8, 1, 125, 2, 5, 10);
-            Enemy golemOne = new Enemy("Tall Stone Golem", 3, 17, 0.8, 13, 2, 175, 3, 8, 6);
-            Enemy golemTwo = new Enemy("Wide Stone Golem", 3, 17, 0.8, 13, 2, 175, 3, 10, 2);
-            Enemy levelOneBoss = new Enemy("CARL, the Boss of deadly doom and stuff", 5, 25, 0.7, 20, 1, 250, 4, 9, 4);
+            // 10 enemies: 1 boss, 1 hard, 3 medium, 5 easy
+            // Level is randomized, and the values are multiplied by Level in the Class
+            Random r = new Random();
 
-            return new List<Enemy>() { ratOne, ratTwo, banana, slime, skeleton, ghost, bat, golemOne, golemTwo, levelOneBoss };
+            Enemy ratOne = new Enemy("Pack of Rats", r.Next(1, 5), 1, 1, 1, 1, 25, 1, 2, 3);
+            Enemy ratTwo = new Enemy("Rack of Pats", r.Next(1, 5), 1, 1, 1, 1, 25, 1, 4, 8);
+            Enemy banana = new Enemy("Banana Monster", r.Next(1, 5), 2, 1, 2, 2, 50, 10, 4, 4);
+            Enemy slime = new Enemy("Living Glue", r.Next(1, 5), 2, 1, 2, 1, 50, 1, 2, 9);
+            Enemy rock = new Enemy("Rock...", r.Next(1, 5), 2, 0.2, 0.2, 1, 50, 1, 2, 9);
+            Enemy skeleton = new Enemy("Spooky Scary Skeleton", r.Next(1, 5), 3, 0.9, 3, 1, 75, 2, 7, 8);
+            Enemy ghost = new Enemy("Invisible Ghost", r.Next(1, 5), 3, 0.8, 4, 1, 75, 4, 6, 2);
+            Enemy bat = new Enemy("Bat-shaped Bird", r.Next(1, 5), 4, 0.9, 3, 1, 75, 2, 5, 10);
+            Enemy golem = new Enemy("Tall Stone Golem", r.Next(1, 5), 4, 0.8, 4, 1, 125, 3, 8, 6);
+            Enemy levelOneBoss = new Enemy("CARL, the Boss", r.Next(1, 5), 5, 0.7, 5, 2, 200, 4, 9, 4);
+
+            return new List<Enemy>() { ratOne, ratTwo, banana, slime, rock, skeleton, ghost, bat, golem, levelOneBoss };
         }
     }
 }

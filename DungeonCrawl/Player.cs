@@ -9,7 +9,7 @@ namespace DungeonCrawl
     public class Player
     {
         private double _hp = 100;
-        private int _healAmount = 10;
+        private int _healAmount = 15;
         private int _hpLevel = 1;
         private int _hpCap = 100;
         private double _defense = 1;
@@ -277,8 +277,9 @@ namespace DungeonCrawl
                         Console.WriteLine("You step LEFT 1 tile.");
                     }
                     return;
-                case ConsoleKey.M:
-                    Console.WriteLine("STATS:\n\n" +
+                case ConsoleKey.C:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("CHARACTER STATS:\n\n" +
                         $"Level: {TotalLevel}\n" +
                         $"HP: {HP}\n" +
                         $"Max Health: {HPCap}\n" +
@@ -286,8 +287,10 @@ namespace DungeonCrawl
                         $"Strength: {Strength}\n" +
                         $"Agility: {Agility}\n" +
                         $"XP: {XP}\n");
+                    Console.ResetColor();
                     return;
                 case ConsoleKey.Q:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Are you sure you want to Quit? Y/N");
                     ConsoleKeyInfo response = Console.ReadKey();
                     switch (response.Key)

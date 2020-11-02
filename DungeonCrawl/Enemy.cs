@@ -12,11 +12,11 @@ namespace DungeonCrawl
         {
             Name = name;
             Level = level;
-            HP = hp;
+            HP = hp * level;
             Defense = defense;
-            Strength = strength;
-            Agility = agility;
-            XPGiven = xpGiven;
+            Strength = strength * level;
+            Agility = agility * level;
+            XPGiven = xpGiven * level;
             FleeThreshold = fleeThreshold;
             PositionX = positionX;
             PositionY = positionY;
